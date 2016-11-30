@@ -9,7 +9,7 @@ $database = "michu007_dex";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn){
-	die("bÅ‚Ä…d: ".msqli_connect_error());
+	die("b³±d: ".msqli_connect_error());
 }
 
 if (isset($_POST['login']))
@@ -28,11 +28,11 @@ if (isset($_POST['login']))
 	if ($count == 1){
 		$cookie_value = $user;
 		setcookie($cookie_name, $cookie_value, time()+ (86400 * 30), "/");
-		header("Location: personal.php");
+		header("Location: test.html");
 	}
 	else {
-		echo "ZÅ‚e hasÅ‚o lub login.";echo "<br>";
-		echo '<a href="zadanie3.php">WrÃ³Ä‡ do logowania</a>';echo "<br>";
+		echo "Z³e has³o lub login.";echo "<br>";
+		echo '<a href="zadanie7.php">Wróæ do logowania</a>';echo "<br>";
 	}
 }
 else if (isset($_POST['register'])){
@@ -43,8 +43,8 @@ else if (isset($_POST['register'])){
 	$spr1 = mysqli_fetch_array($conn ->query("SELECT COUNT(*) FROM users WHERE username='$user' LIMIT 1"));
 	if ($spr < 8 || $spr1[0] >= 1) {
   
-		echo "BÅ‚Ä…d. HasÅ‚o musi mieÄ‡ conajmniej 8 znakÃ³w lub login zajÄ™ty.";echo "<br>";
-		echo '<a href="zadanie3.php">WrÃ³Ä‡ do logowania</a>';echo "<br>";
+		echo "B³±d. Has³o musi mieæ conajmniej 8 znaków lub login zajêty.";echo "<br>";
+		echo '<a href="zadanie7.php">Wróæ do logowania</a>';echo "<br>";
 	}
 	else{
 			
@@ -52,12 +52,12 @@ else if (isset($_POST['register'])){
 		
 		$phash = sha1(sha1($pass."salt")."salt");
 		echo "Zajerestrowano: $user";echo "<br>";
-		echo '<a href="zadanie3.php">WrÃ³Ä‡ do logowania</a>';
+		echo '<a href="zadanie7.php">Wróæ do logowania</a>';
 		echo "<br>";
                
  $sql = "INSERT INTO users (id, username, password, kolor) VALUES ('', '$user', '$phash', 'red')";
 		$result = $conn->query($sql);
-}
+
 
 }}
 ?>
